@@ -29,17 +29,18 @@ builder.Configuration.AddAzureAppConfiguration(options =>
         //options.Select("TestApp:*", environment);
     });
 
-    options.ConfigureKeyVault(options => 
-    {
-        // use an environment variable for this
-        var keyVaultEndpoint = builder.Configuration["KeyVaultEndpoint"];
+    // options.ConfigureKeyVault(options => 
+    // {
+    //     // use an environment variable for this
+    //     var keyVaultEndpoint = builder.Configuration["KeyVaultEndpoint"];
 
-        // for using keyvault, a proper credential is required
-        options.SetCredential(new DefaultAzureCredential());
+    //     // for using keyvault, a proper credential is required
+    //     options.SetCredential(new DefaultAzureCredential());
 
-        //options.SetSecretRefreshInterval(TimeSpan.FromSeconds(60));
-    });
+    //     //options.SetSecretRefreshInterval(TimeSpan.FromSeconds(60));
+    // });
 
+    // for handling explicit refreshes of keys/values, an instance of IConfigurationRefresher is required
     var refresher = options.GetRefresher();
 });
 
